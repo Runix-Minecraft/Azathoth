@@ -1,0 +1,16 @@
+[
+{
+  "modid": "azathoth",
+  "name": "Azathoth",
+  "description": "",
+  "version": "${mod_version}",
+  "mcversion": "${minecraft_version}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["LordIllyohs, Josiah"],
+  "credits": "TBD",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
