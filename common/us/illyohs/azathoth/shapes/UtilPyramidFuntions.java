@@ -34,7 +34,7 @@ public class UtilPyramidFuntions {
     public static HashSet<WorldXYZ> getPyramid(WorldXYZ coords, int length, int width, int hight) {
         //TODO: Work out the logic for Pyramids 
             //For this sudo code length = L, width = W, hight = H
-                //So LxW for the base then layers L-1xW-1 for each layer and center till it reaches the top
+                //So LxW for the base then layers L-1xW-1 for each layer and center it till it reaches the top
         return null;
         
     }
