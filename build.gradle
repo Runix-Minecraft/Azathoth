@@ -33,9 +33,9 @@ task buildInfo {
 
 def ENV = System.getenv()
 if (ENV.BUILD_ID) {
-    version = "${config.mc_version}-${config.mod_version}.${config.release_status}.${project.buildInfo.sha}" 
+    version = "${config.mc_version}-${config.mod_version}.${project.buildInfo.sha}.${config.release_status}" 
 } else {
-    version = "${config.mc_version}-${config.mod_version}.${config.release_status}.local-${project.buildInfo.sha}"
+    version = "${config.mc_version}-${config.mod_version}.local.${project.buildInfo.sha}.${config.release_status}"
 }
 
 group= "${config.group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
