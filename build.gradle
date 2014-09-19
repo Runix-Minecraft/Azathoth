@@ -79,6 +79,7 @@ processResources {
 
     task deobfJar(type: Jar) {
         from sourceSets.main.output
+        from sourceSets.main.allSource
         classifier = 'DEV'
     }
 
