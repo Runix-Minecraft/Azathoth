@@ -22,6 +22,7 @@ Azathoth is licensed under the [The BSD 2-Clause License](https://github.com/Run
         code contributed.
 3. Pass a [Travic-ci](https://travis-ci.org) build.
     * If it fails it will not be pulled.
+    * [![Build Status](https://travis-ci.org/Runix-Minecraft/Azathoth.svg?branch=master)](https://travis-ci.org/Runix-Minecraft/Azathoth)
 
 ==========
 ####DOWNLOADS
