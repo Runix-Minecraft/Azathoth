@@ -43,8 +43,6 @@ import net.minecraft.world.World;
  * World and contains helper methods useful to Runix.
  */
 
-//Note might want to move to a library mod
-
 public class WorldXYZ extends ChunkCoordinates {
 
     private transient World worldObj = null;

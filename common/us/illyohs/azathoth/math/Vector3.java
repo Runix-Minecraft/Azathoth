@@ -29,11 +29,12 @@ import us.illyohs.azathoth.world.WorldXYZ;
 import net.minecraftforge.common.util.ForgeDirection;
 
 
-public class Vector3 {// extends paulscode.sound.Vector3D.{
+public class Vector3 {
+    
     public static final Vector3 UP =    new Vector3(0, 1,0);
     public static final Vector3 DOWN =  new Vector3(0,-1,0);
     public static final Vector3 NORTH = new Vector3(0,0,-1);
-    public static final Vector3 EAST =  new Vector3( 1,0,0);
+    public static final Vector3 EAST =  new Vector3(1,0,0);
     public static final Vector3 SOUTH = new Vector3(0,0, 1);
     public static final Vector3 WEST =  new Vector3(-1,0,0);
     public static final Vector3 NONE =  new Vector3(0,0,0);
@@ -59,7 +60,9 @@ public class Vector3 {// extends paulscode.sound.Vector3D.{
         z = mz;
     }
     
-    /** Returns a difference vector such that reference + vector = destination */
+    /**
+     * Returns a difference vector such that reference + vector = destination
+     */
     public Vector3(WorldXYZ reference, WorldXYZ destination){
         x = destination.posX - reference.posX; 
         y = destination.posY - reference.posY;
