@@ -44,7 +44,7 @@ archivesBaseName = "${config.name}"
 minecraft {
     version = "${config.mc_version}-${config.forge_version}"
 
-    replaceIn "lib/LibInfo.java"
+    replaceIn "reference/Reference.java"
     replace '@VERSION@', "${config.mc_version}-${config.mod_version}"
 }
 
@@ -70,7 +70,6 @@ processResources {
                 
         // replace version and mcversion
         expand 'mod_version':project.version, 'minecraft_version':project.minecraft.version
-    }
         
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
