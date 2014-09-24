@@ -78,7 +78,7 @@ processResources {
 
     task deobfJar(type: Jar) {
         from sourceSets.main.output
-        from sourceSets[![Build Status](https://travis-ci.org/Runix-Minecraft/Azathoth.svg?branch=master)](https://travis-ci.org/Runix-Minecraft/Azathoth).main.allSource
+        from sourceSets.main.allSource
         classifier = 'DEV'
     }
 
