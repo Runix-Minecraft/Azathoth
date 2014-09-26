@@ -25,6 +25,16 @@
  */
 package us.illyohs.azathoth.core;
 
+import net.minecraft.entity.player.EntityPlayer;
+
+import us.illyohs.azathoth.world.WorldXYZ;
+
+
 public class PatternHandler {
+    
+    
+    public void possiblePatternActivation(EntityPlayer player, WorldXYZ corrds) {
+        
+    }
 
 }
