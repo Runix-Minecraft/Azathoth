@@ -25,14 +25,11 @@
  */
 package us.illyohs.azathoth.core;
 
-import net.minecraft.entity.player.EntityPlayer;
-
-import us.illyohs.azathoth.world.WorldXYZ;
-
-public class PatternHandler {
+public class Reference {
     
-    public void possiblePatternActivation(EntityPlayer player, WorldXYZ corrds) {
-        
-    }
-
+    public static final String MOD_ID = "Azathoth";
+    public static final String MOD_NAME = "Azathoth";
+    public static final String MOD_VERSION = "@VERSION@";
+    public static final String MOD_FINGERPRINT = "@FINGERPRINT@";
+    
 }

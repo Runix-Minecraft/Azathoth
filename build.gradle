@@ -44,7 +44,7 @@ archivesBaseName = "${config.name}"
 minecraft {
     version = "${config.mc_version}-${config.forge_version}"
 
-    replaceIn "reference/Reference.java"
+    replaceIn "core/Reference.java"
     replace '@VERSION@', "${config.mc_version}-${config.mod_version}"
 }
 

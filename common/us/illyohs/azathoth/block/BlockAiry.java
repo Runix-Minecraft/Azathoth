@@ -23,13 +23,35 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.reference;
+package us.illyohs.azathoth.block;
 
-public class Reference {
-    
-    public static final String MOD_ID = "azathoth";
-    public static final String MOD_NAME = "Azathoth";
-    public static final String MOD_VERSION = "@VERSION@";
-    public static final String MOD_FINGERPRINT = "@FINGERPRINT@";
-    
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+
+
+public class BlockAiry extends Block {
+
+	public BlockAiry() {
+		super(Material.air);
+	}
+    public int getRenderType() {
+        return -1;
+    }
+
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return null;
+    }
+
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    public boolean canCollideCheck(int meta, boolean rclick){
+        return false;
+    }
+
+    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
+
 }
