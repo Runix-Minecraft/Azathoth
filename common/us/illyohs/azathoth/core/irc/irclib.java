@@ -24,7 +24,7 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package us.illyohs.azathoth.irc;
+package us.illyohs.azathoth.core.irc;
 
 public class irclib {
 }
