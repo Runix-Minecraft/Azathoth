@@ -37,11 +37,18 @@ import us.illyohs.azathoth.world.WorldXYZ;
 public abstract class BasePattern {
     
     public BasePattern(){};
-    
+
+    /**
+     * World patten template.
+     */
     public abstract Block[][][] blockPattern();
 
+    /**
+     * Tells Azathoth if the pattern is flat
+     * @return true or false
+     */
     public abstract boolean isFlatPattern();
-    
+
     protected HashMap<WorldXYZ, SigBlock> patternFormulae(WorldXYZ coords) {
         if(isFlatPattern()) {
             coords = coords.copyWithNewFacing(1);
@@ -49,17 +56,19 @@ public abstract class BasePattern {
         }
         return null;
     }
-    
+
 
     public void execute(WorldXYZ coords,  EntityPlayer player, Vector3 forward) {
         execute(coords, player);
     }
-    
+
     /**
-     * 
+     * What you want to execute on pattern activation
+     * @param coords are the world and xyz of the structure
+     * @param player the player object
      */
     public abstract void execute(WorldXYZ coords,  EntityPlayer player);
-    
+
     /**
      * 
      */
