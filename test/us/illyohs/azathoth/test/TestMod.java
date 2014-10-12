@@ -25,9 +25,48 @@
  */
 package us.illyohs.azathoth.test;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import us.illyohs.azathoth.pattern.BasePattern;
+import us.illyohs.azathoth.pattern.Pattern;
+import us.illyohs.azathoth.world.WorldXYZ;
 import cpw.mods.fml.common.Mod;
 
-//@Mod(name ="testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
+@Mod(name = "testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
 public class TestMod {
 
+    @Pattern(modid = "testmodid", name = "testpattern", isFake = true)
+    public class boopPattern extends BasePattern {
+
+        @Override
+        public Block[][][] blockPattern() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public boolean isFlatPattern() {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public boolean isAssymetrical() {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public void execute(WorldXYZ coords, EntityPlayer player) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public boolean isPatternAllowed(EntityPlayer player, BasePattern pattern) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+    }
 }

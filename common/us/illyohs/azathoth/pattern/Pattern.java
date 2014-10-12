@@ -30,7 +30,7 @@ public @interface Pattern {
     /**
      * Returns the modid of the mod that wants to make a pattern
      */
-    String modid() default "";
+    String modid();
 
     /**
      * Retunes the name of the pattern
