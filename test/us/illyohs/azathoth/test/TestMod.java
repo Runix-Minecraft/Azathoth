@@ -35,7 +35,7 @@ import cpw.mods.fml.common.Mod;
 @Mod(name = "testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
 public class TestMod {
 
-    @Pattern(modid = "testmodid", name = "testpattern", isFake = true)
+    @Pattern(forMod = "testmodid", name = "testpattern", isFake = true)
     public class boopPattern extends BasePattern {
 
         @Override

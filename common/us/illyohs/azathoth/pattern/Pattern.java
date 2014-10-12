@@ -28,14 +28,14 @@ import java.lang.annotation.*;
 public @interface Pattern {
 
     /**
-     * Returns the modid of the mod that wants to make a pattern
+     * Modid of the mod that uses the pattern
      */
-    String modid();
+    String forMod();
 
     /**
-     * Retunes the name of the pattern
+     * Name of the pattern to be registered
      */
-    String name() default "";
+    String name();
 
     /**
      * flags as a fake pattern not sure why one would need ths but here we got
