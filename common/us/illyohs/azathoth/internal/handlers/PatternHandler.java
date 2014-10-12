@@ -23,17 +23,13 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.internal;
+package us.illyohs.azathoth.internal.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 
 import us.illyohs.azathoth.world.WorldXYZ;
 
 public class PatternHandler {
-    
-    public void possiblePatternActivation(EntityPlayer player, WorldXYZ corrds) {
-        
-    }
 
 
 }

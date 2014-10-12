@@ -35,6 +35,8 @@ import us.illyohs.azathoth.world.SigBlock;
 import us.illyohs.azathoth.world.WorldXYZ;
 
 public abstract class BasePattern {
+
+    public String patternName = null;
     
     public BasePattern(){};
 
@@ -48,6 +50,8 @@ public abstract class BasePattern {
      * @return true or false
      */
     public abstract boolean isFlatPattern();
+
+    public abstract boolean isAssymetrical();
 
     protected HashMap<WorldXYZ, SigBlock> patternFormulae(WorldXYZ coords) {
         if(isFlatPattern()) {
@@ -90,13 +94,26 @@ public abstract class BasePattern {
     /**
      * 
      */
-    public static boolean isPatternAllowed(EntityPlayer player, BasePattern pattern) {
-        return true;
-        
+    public abstract boolean isPatternAllowed(EntityPlayer player, BasePattern pattern);
+
+    public String getPatternName() throws Exception {
+        if (!patternName .isEmpty()) {
+            return patternName;
+        } else {
+            throw new Exception("Pattern name not found for"+ getClass());
+        }
     }
-    
-    public boolean isAssymetrical() {
-        return false;
+
+    public String setPatternName(String name) {
+        this.patternName = name;
+        return patternName;
     }
-    
+
+//    public WorldXYZ checkPattern(WorldXYZ coords) {
+//        HashMap<WorldXYZ, SigBlock> shape = patternFormulae(coords);
+//
+//        if (!isAssymetrical()) {
+//
+//        }
+//    }
 }
