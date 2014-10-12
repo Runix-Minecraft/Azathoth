@@ -25,11 +25,7 @@
  */
 package us.illyohs.azathoth.internal.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-
-import us.illyohs.azathoth.world.WorldXYZ;
-
-public class PatternHandler {
+public class PatternManager {
 
 
 }

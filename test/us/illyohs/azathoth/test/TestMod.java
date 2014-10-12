@@ -27,7 +27,7 @@ package us.illyohs.azathoth.test;
 
 import cpw.mods.fml.common.Mod;
 
-@Mod(name ="testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
+//@Mod(name ="testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
 public class TestMod {
 
 }

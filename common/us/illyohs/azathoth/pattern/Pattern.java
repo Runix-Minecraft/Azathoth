@@ -19,28 +19,37 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package us.illyohs.azathoth.pattern;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface RegPattern {
+public @interface Pattern {
 
     /**
-     * Returns the modid that the pattern will be used for the pattern
-     * @return modid
+     * Returns the modid of the mod that wants to make a pattern
      */
-    String modid();
+    String modid() default "";
 
     /**
      * Retunes the name of the pattern
-     * @return
      */
-    String name();
+    String name() default "";
+
+    /**
+     * flags as a fake pattern not sure why one would need ths but here we got
+     */
+    boolean isFake() default false;
+
+//    /**
+//     * Is the pattern s flat or not
+//     */
+//    boolean isFlat() default true;
+//
+//    /**
+//     * Is the pattern asymmetrical
+//     */
+//    boolean isAsymetrical()  default false;
 
 }
