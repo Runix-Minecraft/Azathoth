@@ -25,7 +25,20 @@
  */
 package us.illyohs.azathoth.internal.handlers;
 
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+
+import us.illyohs.azathoth.internal.Reference;
+import us.illyohs.azathoth.pattern.Pattern;
+
 public class PatternManager {
-
-
+    
+    public List<PatternMeta> patternMeta = new ArrayList<PatternMeta>();
+    
+    
+    public static void scanForPatterns() {
+        
+        
+    }
 }

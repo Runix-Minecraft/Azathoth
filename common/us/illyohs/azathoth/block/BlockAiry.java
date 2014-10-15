@@ -30,12 +30,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-
 public class BlockAiry extends Block {
 
-	public BlockAiry() {
-		super(Material.air);
-	}
+    public BlockAiry() {
+        super(Material.air);
+    }
+
     public int getRenderType() {
         return -1;
     }
@@ -48,10 +48,12 @@ public class BlockAiry extends Block {
         return false;
     }
 
-    public boolean canCollideCheck(int meta, boolean rclick){
+    public boolean canCollideCheck(int meta, boolean rclick) {
         return false;
     }
 
-    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
+    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_,
+            int p_149690_7_) {
+    }
 
 }
