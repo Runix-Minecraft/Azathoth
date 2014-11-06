@@ -23,50 +23,42 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.test;
+package us.illyohs.azathoth.internal.handler;
 
-import net.minecraft.block.Block;
+import org.apache.commons.lang3.tuple.Pair;
+
 import net.minecraft.entity.player.EntityPlayer;
-
-import cpw.mods.fml.common.Mod;
-
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import us.illyohs.azathoth.pattern.BasePattern;
+import us.illyohs.azathoth.pattern.PatternRegistry;
+import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.WorldXYZ;
 
-@Mod(name = "testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
-public class TestMod {
-
-    public class boopPattern extends BasePattern {
-
-        @Override
-        public Block[][][] blockPattern() {
-            // TODO Auto-generated method stub
-            return null;
+public class PatternHandler {
+    
+    public void playerInteractEvent(PlayerInteractEvent event) {
+        if(!event.entityPlayer.worldObj.isRemote) {
+            PatternActivation(event.entityPlayer, new WorldXYZ(event.entityPlayer.worldObj, event.x, event.y, event.z));
+        } else {
+            return;
         }
-
-        @Override
-        public boolean isFlatPattern() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public boolean isAssymetrical() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public void execute(WorldXYZ coords, EntityPlayer player) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public boolean isPatternAllowed(EntityPlayer player, BasePattern pattern) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
     }
+
+    /**
+     * @param entityPlayer
+     * @param worldXYZ
+     */
+    public void PatternActivation(EntityPlayer player, WorldXYZ coords) {
+
+        
+    }
+    
+    private Pair<BasePattern, Vector3> checkForAnyPattern(WorldXYZ corrds) {
+        for (int i =0; i < PatternRegistry.regPattern.size(); i++) {
+//            WorldXYZ result = PatternRegistry.regPattern.get(i).c
+        }
+        return null;
+        
+    }
+
 }

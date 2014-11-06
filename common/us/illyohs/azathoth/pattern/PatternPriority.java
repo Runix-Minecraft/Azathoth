@@ -23,22 +23,9 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.internal.handlers;
+package us.illyohs.azathoth.pattern;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
+public enum PatternPriority {
+    HIGH, MEDIUM, LOW
 
-import us.illyohs.azathoth.internal.Reference;
-import us.illyohs.azathoth.pattern.Pattern;
-
-public class PatternManager {
-    
-    public List<PatternMeta> patternMeta = new ArrayList<PatternMeta>();
-    
-    
-    public static void scanForPatterns() {
-        
-        
-    }
 }

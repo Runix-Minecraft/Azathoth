@@ -25,35 +25,17 @@
  */
 package us.illyohs.azathoth.pattern;
 
-import java.lang.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-public @interface Pattern {
-
-    /**
-     * Modid of the mod that uses the pattern
-     */
-    String owner();
-
-    /**
-     * Name of the pattern to be registered
-     */
-    String name();
-
-    /**
-     * flags as a fake pattern not sure why one would need ths but here we got
-     */
-    boolean isFake() default false;
-
-//    /**
-//     * Is the pattern s flat or not
-//     */
-//    boolean isFlat() default true;
-//
-//    /**
-//     * Is the pattern asymmetrical
-//     */
-//    boolean isAsymetrical()  default false;
-
+public class PatternRegistry {
+    
+    public static List<PatternMeta> regPattern  = new ArrayList<PatternMeta>();
+    
+    
+    public static void registerPattern(String modId, String name, PatternPriority priority) {
+        regPattern.add(new PatternMeta(modId, name, priority));
+    }
+    
+    
 }

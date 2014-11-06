@@ -109,11 +109,26 @@ public abstract class BasePattern {
         return patternName;
     }
 
-//    public WorldXYZ checkPattern(WorldXYZ coords) {
-//        HashMap<WorldXYZ, SigBlock> shape = patternFormulae(coords);
-//
-//        if (!isAssymetrical()) {
-//
-//        }
-//    }
+    
+    //Does this need to be in BasePatten?
+    public WorldXYZ checkPattern(WorldXYZ coords) {
+        HashMap<WorldXYZ, SigBlock> shape = patternFormulae(coords);
+
+        if (!isAssymetrical()) {
+            if(patternOrentaionMatches(coords, shape)){
+                return coords;
+            }
+        }
+        return coords;
+    }
+
+    /**
+     * @param coords
+     * @param shape
+     * @return
+     */
+    public boolean patternOrentaionMatches(WorldXYZ coords, HashMap<WorldXYZ, SigBlock> shape) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

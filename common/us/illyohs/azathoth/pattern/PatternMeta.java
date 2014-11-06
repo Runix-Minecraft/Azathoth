@@ -23,50 +23,17 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.test;
+package us.illyohs.azathoth.pattern;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+public class PatternMeta {
 
-import cpw.mods.fml.common.Mod;
-
-import us.illyohs.azathoth.pattern.BasePattern;
-import us.illyohs.azathoth.world.WorldXYZ;
-
-@Mod(name = "testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
-public class TestMod {
-
-    public class boopPattern extends BasePattern {
-
-        @Override
-        public Block[][][] blockPattern() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public boolean isFlatPattern() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public boolean isAssymetrical() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public void execute(WorldXYZ coords, EntityPlayer player) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public boolean isPatternAllowed(EntityPlayer player, BasePattern pattern) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
+    String modId;
+    String name;
+    PatternPriority priority;
+    
+    public PatternMeta(String modId, String name, PatternPriority priority) {
+        this.modId = modId;
+        this.name = name;
+        this.priority = priority;
     }
 }
