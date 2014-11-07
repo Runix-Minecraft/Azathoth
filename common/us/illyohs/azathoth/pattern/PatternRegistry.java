@@ -37,5 +37,17 @@ public class PatternRegistry {
         regPattern.add(new PatternMeta(modId, name, priority));
     }
     
+    public static void registerPatternHigh(String modId, String name) {
+        regPattern.add(new PatternMeta(modId, name, PatternPriority.HIGH));
+        
+    }
     
+    public static void registerPatternMedium(String modId, String name) {
+        regPattern.add(new PatternMeta(modId, name, PatternPriority.MEDIUM));
+        
+    }
+    public static void registerPatternLow(String modId, String name) {
+        regPattern.add(new PatternMeta(modId, name, PatternPriority.LOW));
+        
+    }
 }
