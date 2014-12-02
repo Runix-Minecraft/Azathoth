@@ -30,11 +30,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 public class FxHelper {
-    
+
+    /**
+     * Binds textures using FML
+     */
     public static void bindTextureFML(ResourceLocation texture) {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
     }
-    
+
+    /**
+     * Binds textures using Minecraft
+     */
     public static void bindTextureMC(ResourceLocation texure) {
         Minecraft.getMinecraft().renderEngine.bindTexture(texure);
     }

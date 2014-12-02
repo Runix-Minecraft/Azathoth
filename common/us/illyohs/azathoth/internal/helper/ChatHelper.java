@@ -1,17 +1,17 @@
 /**
  *  Copyright (c) 2014, Runix-Minecraft
  *  All rights reserved.
- *  
+ *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions are met:
- *  
+ *
  *  * Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- *    
+ *
  *  * Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- *  
+ *
  *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -23,50 +23,38 @@
  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package us.illyohs.azathoth.test;
+package us.illyohs.azathoth.internal.helper;
 
-import net.minecraft.block.Block;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import us.illyohs.azathoth.internal.Reference;
 
-import cpw.mods.fml.common.Mod;
+public class ChatHelper {
 
-import us.illyohs.azathoth.pattern.BasePattern;
-import us.illyohs.azathoth.world.WorldXYZ;
+    private static final IChatComponent AZT = createSckChatComponent(Reference.MOD_ID.toLowerCase());
 
-@Mod(name = "testmod", modid = "testmodid", version = "0.0.0.0.NOPE")
-public class TestMod {
+    public static void iCommandSenderReply(ICommandSender player, String message) {
+        sendChatToPlayer((EntityPlayer)player, message);
+    }
 
-    public class boopPattern extends BasePattern {
+    private static IChatComponent createSckChatComponent(String string) {
+        ChatComponentText Component = new ChatComponentText(string);
+        return Component;
+    }
 
-        @Override
-        public Block[][][] blockPattern() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+    public static IChatComponent createChatComponent(String message) {
+        ChatComponentText component = new ChatComponentText(message);
+        return AZT.appendSibling(component);
+    }
 
-        @Override
-        public boolean isFlatPattern() {
-            // TODO Auto-generated method stub
-            return false;
-        }
+    public static void sendChatToPlayer(EntityPlayer player, String message) {
+        player.addChatComponentMessage(createChatComponent(message));
+    }
 
-        @Override
-        public boolean isAssymetrical() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public void execute(WorldXYZ coords, EntityPlayer player) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public boolean isPatternAllowed(EntityPlayer player, BasePattern pattern) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
+    public static void broadcastMessageToPlayers(String message){
+        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(createChatComponent(message));
     }
 }

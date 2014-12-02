@@ -233,7 +233,7 @@ public class PulseManager {
     }
 
     /**
-     * Parse an object for a matching handler for the given object.
+     * Parse an object for a matching handlers for the given object.
      *
      * @param pulse Object to inspect for Handlers
      * @param evt The event object
