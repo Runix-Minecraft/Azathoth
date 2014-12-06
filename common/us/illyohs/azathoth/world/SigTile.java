@@ -33,7 +33,7 @@ public class SigTile {
     public final boolean world;
     
     
-    public SigTile(TileEntity tile, Boolean world) {
+    public SigTile(TileEntity tile, boolean world) {
         this.tile = tile;
         this.world = world;
     }
