@@ -25,10 +25,13 @@
  */
 package us.illyohs.azathoth.pattern;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import net.minecraft.block.Block;
-
+import net.minecraft.entity.player.EntityPlayer;
+import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.SigBlock;
 import us.illyohs.azathoth.world.WorldXYZ;
 
@@ -42,6 +45,27 @@ public abstract class Pattern {
     protected abstract Block[][][] patternTemplate();
     
     public abstract boolean isFlatPatternOnly();
+    
+    public void execute(WorldXYZ coords, EntityPlayer player, Vector3 forward) {
+        execute(coords, player);
+    }
+    
+    /**
+     * Executes the main function of a given Rune.  If the Rune is persistent, it will store XYZ and other salient
+     * information for future use.  Each Rune class is responsible for keeping track of the information it needs in
+     * a static class variable.
+     * @param coords World and xyz that Rune was activated in.
+     * @param player We pass the player instead of World so that runes can later affect the Player
+     * @param forward 
+     */
+    public abstract void execute(WorldXYZ coords, EntityPlayer player);
+    
+    protected boolean stampBlockPattern(HashMap<WorldXYZ, SigBlock> stamp, EntityPlayer player) {
+        for (WorldXYZ target : stamp.keySet()) 
+            target.setBlockId(stamp.get(target));
+            return true;
+            //TODO: build permissions system/checking
+    }
     
     protected HashMap<WorldXYZ, SigBlock> patternFormulae(WorldXYZ coords) {
         if (isFlatPatternOnly())
@@ -74,10 +98,48 @@ public abstract class Pattern {
                         System.err.println("Block facing not recognized: " + centerPoint.face + " should be 0-5.");
                         target = centerPoint;
                     }
+                    shape.put(target, new SigBlock(pattern[y][z][x], 0));
                 }
             }
         }
         return shape;
     }
     
+    public WorldXYZ checkPattern(WorldXYZ coords) {
+        HashMap<WorldXYZ, SigBlock> shape = patternFormulae(coords);
+        if (!isAsymmetrical()) {
+            if (patternOrientationMatches(coords, shape)) {
+                return coords;
+            } else {
+                return null;
+            }
+            
+        } else {
+            for(int nTurns = 0; nTurns < 4; ++nTurns) {
+                switch(coords.face){
+                case 0: case 1: 
+                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xzRotationOrder[nTurns]);
+                    break;
+                case 2: case 3: 
+                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xyRotationOrder[nTurns]);
+                    break;
+                case 4: case 5: 
+                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.yzRotationOrder[nTurns]);
+                    break;
+                }
+                return coords;
+            }
+        }
+        return null;
+        
+    }
+    
+    private boolean patternOrientationMatches(WorldXYZ coords, HashMap<WorldXYZ, SigBlock> shape) {
+        //TODO: 
+        return false;
+    }
+
+    public boolean isAsymmetrical() {
+        return false;
+    }
 }
