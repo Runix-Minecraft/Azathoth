@@ -26,22 +26,34 @@
 package us.illyohs.azathoth.pattern;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import scala.actors.threadpool.Arrays;
+import scala.collection.mutable.ArrayBuilder.ofBoolean;
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.WorldXYZ;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
 public class PatternRegistry {
     
-    private ArrayList<Pattern> patRegistry = new ArrayList<Pattern>();
+    public PatternRegistry() {
+       MinecraftForge.EVENT_BUS.register(this);
+    }
     
-    public void registerPattern(Pattern pattern) {
+
+    public static ArrayList<Pattern> patRegistry = new ArrayList<Pattern>();
+//    public HashMap<String, Pattern> modPatternReg = new HashMap<String, Pattern>();
+    //TODO: Store modids
+    
+    public static void registerPattern(Pattern pattern) {
         patRegistry.add(pattern);
     }
     
@@ -49,6 +61,7 @@ public class PatternRegistry {
         //TODO: organize the pattern registry by mods 
     }
     
+    @SubscribeEvent
     public void playerInteractEvent(PlayerInteractEvent event) {
         if (event.entityPlayer.worldObj.isRemote) return;
         if (!event.entityPlayer.worldObj.isRemote && event.action == Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
@@ -57,10 +70,17 @@ public class PatternRegistry {
     }
     
     public void possiblePatternActivation(EntityPlayer player, WorldXYZ coords) {
-        Pair<Pattern, Vector3> matchingPatternInfp = checkForAnyPattern(coords);
-        if (matchingPatternInfp != null) {
-//            Pattern
-            //TODO: finish possible activations 
+        Pair<Pattern, Vector3> matchingPatternInfo = checkForAnyPattern(coords);
+        if (matchingPatternInfo != null) {
+            Pattern matchPattern = matchingPatternInfo.getLeft();
+            String direction;
+            if(matchPattern.isAsymmetrical()) {
+                direction = Vector3.faceString[Arrays.asList(Vector3.facing).indexOf(matchingPatternInfo.getRight())];       
+            } else {
+                direction = Vector3.faceString[coords.face];
+            }
+            
+            matchPattern.execute(coords, player, matchingPatternInfo.getRight());
         }
     }
 

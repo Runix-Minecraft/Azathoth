@@ -25,9 +25,38 @@
  */
 package us.illyohs.azathoth.internal;
 
+import us.illyohs.azathoth.pattern.PatternRegistry;
+import us.illyohs.tests.FooPattern;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Azathoth {
+    
+    @Instance
+    public static Azathoth instance;
+    
+    public PatternRegistry patReg;
+    
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        PatternRegistry.registerPattern(new FooPattern());
+        
+    }
+    
+    @EventHandler
+    public void Init(FMLInitializationEvent event) {
+        
+    }
+    
+    @EventHandler
+    public void PostInit(FMLPostInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(patReg);
+    }
 
 }

@@ -31,10 +31,16 @@ import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.SigBlock;
 import us.illyohs.azathoth.world.WorldXYZ;
-
+/**
+ * This is the basis of all patterns make in order to register all patterns
+ * before the PostInitialization. To register in the pattern registry
+ * PatternResistry.registerPattern(new FooPattern); 
+ *
+ */
 public abstract class Pattern {
     
     public Pattern() {}
