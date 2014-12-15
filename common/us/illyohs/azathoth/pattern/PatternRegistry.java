@@ -28,6 +28,7 @@ package us.illyohs.azathoth.pattern;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -48,7 +49,6 @@ public class PatternRegistry {
 //       MinecraftForge.EVENT_BUS.register(this);
     }
     
-
     public static ArrayList<Pattern> patRegistry = new ArrayList<Pattern>();
 //    public HashMap<String, Pattern> modPatternReg = new HashMap<String, Pattern>();
     //TODO: Store modids
@@ -64,7 +64,9 @@ public class PatternRegistry {
     @SubscribeEvent
     public void playerInteractEvent(PlayerInteractEvent event) {
         if (event.entityPlayer.worldObj.isRemote) return;
-        if (!event.entityPlayer.worldObj.isRemote && event.action == Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
+        if (!event.entityPlayer.worldObj.isRemote && event.action == 
+                Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
+            
           possiblePatternActivation(event.entityPlayer, 
                   new WorldXYZ(event.entityPlayer.worldObj, event.x, event.y, event.z, event.face));
 //          System.out.println("Ouch you poked me!!");
@@ -72,17 +74,18 @@ public class PatternRegistry {
     }
     
     public void possiblePatternActivation(EntityPlayer player, WorldXYZ coords) {
-        
+
         Pair<Pattern, Vector3> matchingPatternInfo = checkForAnyPattern(coords);
         if (matchingPatternInfo != null) {
             Pattern matchPattern = matchingPatternInfo.getLeft();
             String direction;
-            if(matchPattern.isAsymmetrical()) 
-                direction = Vector3.faceString[Arrays.asList(Vector3.facing).indexOf(matchingPatternInfo.getRight())];       
+            if (matchPattern.isAsymmetrical()) 
+                direction = Vector3.faceString[Arrays.asList(Vector3.facing).indexOf(matchingPatternInfo.getRight())];
              else 
-                 System.out.println("BOOOOOOOP");
+                System.out.println("BOOOOOOOP");
                 direction = Vector3.faceString[coords.face];
-            matchPattern.execute(coords, player, matchingPatternInfo.getRight());
+                matchPattern.execute(coords, player,
+                        matchingPatternInfo.getRight());
             
         }
     }

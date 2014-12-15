@@ -8,32 +8,36 @@ import net.minecraft.util.EnumChatFormatting;
 import us.illyohs.azathoth.pattern.Pattern;
 import us.illyohs.azathoth.world.WorldXYZ;
 
-public class FooPattern extends Pattern{
+public class BarPattern extends Pattern {
 
     @Override
     protected Block[][][] patternTemplate() {
-        Block STONE = Blocks.stone;
-        Block RTOURCH = Blocks.cobblestone;
-        return new Block[][][]{{
-            {STONE, STONE, STONE},
-            {STONE, RTOURCH, STONE},
-            {STONE, STONE, STONE}
+        Block SPONGE = Blocks.sponge;
+        Block COB = Blocks.cobblestone;
+        return new Block[][][] {{
+            {SPONGE,SPONGE,SPONGE},
+            {SPONGE,COB,SPONGE},
+            {SPONGE,SPONGE,SPONGE}
         }};
     }
 
     @Override
     public boolean isFlatPatternOnly() {
+        // TODO Auto-generated method stub
         return true;
     }
     
     @Override
     public boolean isAsymmetrical() {
         return true;
-        }
+    };
 
     @Override
     public void execute(WorldXYZ coords, EntityPlayer player) {
         player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
+        player.addExperience(300);
+        player.setDead();
+        
     }
 
 }

@@ -38,7 +38,8 @@ import us.illyohs.azathoth.world.WorldXYZ;
 /**
  * This is the basis of all patterns make in order to register all patterns
  * before the PostInitialization. To register in the pattern registry
- * PatternResistry.registerPattern(new FooPattern); 
+ * 
+ * Example: PatternResistry.registerPattern(new FooPattern); 
  *
  */
 public abstract class Pattern {
@@ -88,23 +89,23 @@ public abstract class Pattern {
                     WorldXYZ target;
                     
                     switch(centerPoint.face) {
-                    case 1: //laying flat activated from top or bottom
-                    case 0:
-                        target = centerPoint.offset(-pattern[y][z].length / 2 + x,  -y,  -pattern[y].length / 2 + z);//TODO: clockwise vs CCW?
-                        break;
-                    case 2://NORTH or SOUTH which points along the z axis
-                    case 3://this means that flat patterns (XZ pattern) will extend along XY
-                        target = centerPoint.offset(-pattern[y][z].length / 2 + x,  pattern[y].length / 2 - z,  -y );//TODO: +y for SOUTH
-                        break;
-                    case 4://WEST or EAST facing
-                    case 5://flat patterns extend along the ZY plane
-                        target = centerPoint.offset(-y,  pattern[y][z].length / 2 - x,  -pattern[y].length / 2 + z);
-                        break;
-                    default:
-                        System.err.println("Block facing not recognized: " + centerPoint.face + " should be 0-5.");
-                        target = centerPoint;
+                        case 1: //laying flat activated from top or bottom
+                        case 0:
+                            target = centerPoint.offset(-pattern[y][z].length / 2 + x,  -y,  -pattern[y].length / 2 + z);//TODO: clockwise vs CCW?
+                            break;
+                        case 2://NORTH or SOUTH which points along the z axis
+                        case 3://this means that flat patterns (XZ pattern) will extend along XY
+                            target = centerPoint.offset(-pattern[y][z].length / 2 + x,  pattern[y].length / 2 - z,  -y );//TODO: +y for SOUTH
+                            break;
+                        case 4://WEST or EAST facing
+                        case 5://flat patterns extend along the ZY plane
+                            target = centerPoint.offset(-y,  pattern[y][z].length / 2 - x,  -pattern[y].length / 2 + z);
+                            break;
+                        default:
+                            System.err.println("Block facing not recognized: " + centerPoint.face + " should be 0-5.");
+                            target = centerPoint;
                     }
-                    shape.put(target, new SigBlock(pattern[y][z][x], 0));
+//                    shape.put(target, new SigBlock(pattern[y][z][x], 0));
                 }
             }
         }

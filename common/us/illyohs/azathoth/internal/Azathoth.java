@@ -25,7 +25,11 @@
  */
 package us.illyohs.azathoth.internal;
 
+
+import java.util.Iterator;
+
 import us.illyohs.azathoth.pattern.PatternRegistry;
+import us.illyohs.tests.BarPattern;
 import us.illyohs.tests.FooPattern;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
@@ -46,11 +50,15 @@ public class Azathoth {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         PatternRegistry.registerPattern(new FooPattern());
+        PatternRegistry.registerPattern(new BarPattern());
         
     }
     
     @EventHandler
     public void Init(FMLInitializationEvent event) {
+        for (int i = 0; i <PatternRegistry.patRegistry.size(); i++) {
+            System.out.println(i);
+        }
         
     }
     
