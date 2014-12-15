@@ -41,7 +41,7 @@ public class Azathoth {
     @Instance
     public static Azathoth instance;
     
-    public PatternRegistry patReg;
+//    public PatternRegistry patReg;
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -56,7 +56,7 @@ public class Azathoth {
     
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(patReg);
+        MinecraftForge.EVENT_BUS.register(new PatternRegistry());
     }
 
 }
