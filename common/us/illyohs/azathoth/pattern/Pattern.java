@@ -31,12 +31,13 @@ import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-
 import us.illyohs.azathoth.math.Vector3;
+import us.illyohs.azathoth.util.UtilMove;
 import us.illyohs.azathoth.world.SigBlock;
 import us.illyohs.azathoth.world.WorldXYZ;
+
 /**
- * This is the basis of all patterns make in order to register all patterns
+ * This is the basis of all patterns. In order to register all patterns
  * before the PostInitialization. To register in the pattern registry
  * 
  * Example: PatternResistry.registerPattern(new FooPattern); 
@@ -123,6 +124,8 @@ public abstract class Pattern {
             
         } else {
             for(int nTurns = 0; nTurns < 4; ++nTurns) {
+                HashMap<WorldXYZ, SigBlock> newShape = UtilMove.rotateStructureInMemory(shape, coords, nTurns);
+                
                 switch(coords.face){
                 case 0: case 1: 
                     coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xzRotationOrder[nTurns]);

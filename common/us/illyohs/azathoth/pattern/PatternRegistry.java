@@ -79,14 +79,14 @@ public class PatternRegistry {
         if (matchingPatternInfo != null) {
             Pattern matchPattern = matchingPatternInfo.getLeft();
             String direction;
-            if (matchPattern.isAsymmetrical()) 
+            if (matchPattern.isAsymmetrical()) {
+//                System.out.println("OUCH YOU POKED ME!");
                 direction = Vector3.faceString[Arrays.asList(Vector3.facing).indexOf(matchingPatternInfo.getRight())];
-             else 
+            } else {
                 System.out.println("BOOOOOOOP");
                 direction = Vector3.faceString[coords.face];
-                matchPattern.execute(coords, player,
-                        matchingPatternInfo.getRight());
-            
+                matchPattern.execute(coords, player,matchingPatternInfo.getRight());
+            }
         }
     }
 
