@@ -11,7 +11,7 @@ import us.illyohs.azathoth.world.WorldXYZ;
 public class FooPattern extends Pattern{
 
     @Override
-    protected Block[][][] patternTemplate() {
+    public Block[][][] patternTemplate() {
         Block STONE = Blocks.stone;
         Block RTOURCH = Blocks.cobblestone;
         return new Block[][][]{{

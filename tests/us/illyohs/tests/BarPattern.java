@@ -36,7 +36,7 @@ import us.illyohs.azathoth.world.WorldXYZ;
 public class BarPattern extends Pattern {
 
     @Override
-    protected Block[][][] patternTemplate() {
+    public Block[][][] patternTemplate() {
         Block SPONGE = Blocks.sponge;
         Block COB = Blocks.cobblestone;
         return new Block[][][] {{
