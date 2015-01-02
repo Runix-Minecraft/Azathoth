@@ -58,7 +58,7 @@ public class BarPattern extends Pattern {
 
     @Override
     public void execute(WorldXYZ coords, EntityPlayer player) {
-        player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
+        player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "BAR PATTERN! MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
         player.addExperience(300);
         player.setDead();
         

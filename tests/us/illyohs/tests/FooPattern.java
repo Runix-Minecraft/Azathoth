@@ -33,7 +33,7 @@ public class FooPattern extends Pattern{
 
     @Override
     public void execute(WorldXYZ coords, EntityPlayer player) {
-        player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
+        player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "FOO PATTERN! MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
     }
 
 }

@@ -30,24 +30,24 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
 public class TileOwnable extends TileEntity {
     
     protected String owner;
-    protected ForgeDirection direction;
+    protected EnumFacing direction;
      
     public TileOwnable() {
-        direction = ForgeDirection.SOUTH;
+        direction = EnumFacing.SOUTH;
         owner = "";
         
     }
     
-    public ForgeDirection getDirection() {
+    public EnumFacing getDirection() {
         return direction;
     }
     
-    public void setDirection(ForgeDirection direction) {
+    public void setDirection(EnumFacing direction) {
         this.direction = direction;
     }
     
@@ -67,9 +67,10 @@ public class TileOwnable extends TileEntity {
             this.owner = ntc.getString("owner");
         }
         
-        if(ntc.hasKey("direction")) {
-            this.direction = ForgeDirection.getOrientation(ntc.getByte("direction"));
-        } 
+//        if(ntc.hasKey("direction")) {
+////            this.direction = EnumFacing.getOrientation(ntc.getByte("direction"));
+//            this.direction = EnumFacing.
+//        } 
     }
     
     @Override
@@ -77,20 +78,20 @@ public class TileOwnable extends TileEntity {
         super.readFromNBT(ntc);
         
         ntc.setString("owner", owner);
-        ntc.setByte("owner", (byte) direction.ordinal());
+//        ntc.setByte("owner", (byte) direction.ordinal());
     }
     
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound ntc = new NBTTagCompound();
         this.writeToNBT(ntc);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, -999, ntc);
+        return new S35PacketUpdateTileEntity(this.pos, -999, ntc);
     }
     
     @Override
     public void onDataPacket(NetworkManager nm, S35PacketUpdateTileEntity s35pute) {
         super.onDataPacket(nm, s35pute);
-        this.readFromNBT(s35pute.func_148857_g());
+        this.readFromNBT(s35pute.getNbtCompound());
     }
     
 }

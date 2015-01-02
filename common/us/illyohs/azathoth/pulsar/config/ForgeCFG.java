@@ -28,8 +28,8 @@ package us.illyohs.azathoth.pulsar.config;
 import java.io.File;
 
 import us.illyohs.azathoth.pulsar.pulse.PulseMeta;
-import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Loader;
 
 /**
  * Azathoth specific pulsar addon class to support using the forge CFG format for configurations

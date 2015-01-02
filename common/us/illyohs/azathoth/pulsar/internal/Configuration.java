@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraftforge.fml.common.Loader;
 import us.illyohs.azathoth.pulsar.config.IConfiguration;
 import us.illyohs.azathoth.pulsar.internal.logging.ILogger;
 import us.illyohs.azathoth.pulsar.pulse.PulseMeta;
@@ -19,7 +20,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import cpw.mods.fml.common.Loader;
 
 /**
  * Default Gson Configuration helper.

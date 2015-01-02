@@ -7,6 +7,12 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
 import us.illyohs.azathoth.pulsar.config.IConfiguration;
 import us.illyohs.azathoth.pulsar.internal.Configuration;
 import us.illyohs.azathoth.pulsar.internal.CrashHandler;
@@ -18,11 +24,6 @@ import us.illyohs.azathoth.pulsar.pulse.Pulse;
 import us.illyohs.azathoth.pulsar.pulse.PulseMeta;
 import us.illyohs.azathoth.pulsar.pulse.PulseProxy;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * Manager class for a given mods Pulses.
