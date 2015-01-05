@@ -27,16 +27,13 @@ package us.illyohs.azathoth.world;
 
 import java.util.ArrayList;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 import us.illyohs.azathoth.math.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 
@@ -46,14 +43,10 @@ import net.minecraft.world.World;
  * World and contains helper methods useful to Runix.
  */
 
-//Are parts of these now redundant because of BlockPos
-public class WorldXYZ extends BlockPos {
+public class WorldXYZ extends ChunkCoordinates {
 
     private transient World worldObj = null;
     private int dimensionID = -500000;
-    public int posX = getX();
-    public int posY = getY();
-    public int posZ = getZ();
     public int face = 1;
 
 //    public WorldXYZ() { //default world is causing an issue with servers because defaultWorld() doesn't work correctly
@@ -63,19 +56,17 @@ public class WorldXYZ extends BlockPos {
 //        this.setWorld(defaultWorld());
 //    }
 //
-    public WorldXYZ(World world, BlockPos pos, EnumFacing face) {
-        super(pos);
+    public WorldXYZ(int x, int y, int z) {
+        super(x, y, z);
         this.setWorld(defaultWorld());
     }
 
     public WorldXYZ(World world, int x, int y, int z) { //this constructor was made to be fast
-        super(x, y, z);
         posX = x;
         posY = y;
         posZ = z;
-        
         worldObj = world;
-        dimensionID = world.provider.getDimensionId();
+        dimensionID = world.provider.dimensionId;
     }
 
     public WorldXYZ(World world, int x, int y, int z, int face) {
@@ -89,7 +80,7 @@ public class WorldXYZ extends BlockPos {
         setWorld(player.worldObj);
     }
 
-    public WorldXYZ(BlockPos otherGuy) {
+    public WorldXYZ(ChunkCoordinates otherGuy) {
         super(otherGuy);
         if(otherGuy instanceof WorldXYZ){
             this.setWorld(((WorldXYZ) otherGuy).getWorld());
@@ -179,7 +170,7 @@ public class WorldXYZ extends BlockPos {
     public int getDimensionNumber(){
         if( getWorld() == null)
             setWorld(defaultWorld());
-        return getWorld().provider.getDimensionId();
+        return getWorld().provider.dimensionId;
     }
 
     public World defaultWorld() {
@@ -189,12 +180,12 @@ public class WorldXYZ extends BlockPos {
     @Override
     public boolean equals(Object otherObj)
     {
-        if (!(otherObj instanceof BlockPos)){
+        if (!(otherObj instanceof ChunkCoordinates)){
             return false;
         }
         else{
-            BlockPos other = (BlockPos)otherObj;
-            if( this.posX == other.getX() && this.getY() == other.getY() && this.posZ == other.getZ()){
+            ChunkCoordinates other = (ChunkCoordinates)otherObj;
+            if( this.posX == other.posX && this.posY == other.posY && this.posZ == other.posZ){
                 if(other instanceof WorldXYZ)
                     return ((WorldXYZ) other).getWorld() == this.getWorld();
                 else //NOTE: This does not compare the face of each coordinate
@@ -211,7 +202,6 @@ public class WorldXYZ extends BlockPos {
     //Simple wrapper method for getBlockID()
     public Block getBlock() {
         return this.getWorld().getBlock(this.posX, this.posY, this.posZ);
-//        return this.getWorld()
     }
 
     //Sister function to getBlockID() for meta values.
@@ -233,16 +223,14 @@ public class WorldXYZ extends BlockPos {
     public boolean setBlockId(SigBlock sig){
         if(sig.equals(Blocks.bedrock) || getBlock() == Blocks.bedrock)
             return false; //You cannot delete or place bedrock
-        return this.getWorld().setBlock(posX, posY, posZ, sig.blockID, sig.state, 2);
-//        return this.getWorld().setBlockState(pos, state)
-//        NOTE: Use last arg 3 if you want a block update.
+        return this.getWorld().setBlock(posX, posY, posZ, sig.blockID, sig.meta, 2);
+        //NOTE: Use last arg 3 if you want a block update.
     }
 
     public boolean setBlock(Block blockID, int meta){
         if(blockID == Blocks.bedrock || getBlock() == Blocks.bedrock)
             return false; //You cannot delete or place bedrock
         return this.getWorld().setBlock(posX, posY, posZ, blockID, meta, 3);
-        
     }
 
     public String toString(){//this is designed to match the GSON output

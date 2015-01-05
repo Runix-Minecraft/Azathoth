@@ -59,11 +59,12 @@ public abstract class Pattern {
     }
     
     /**
-     * Executes the main function of a given pattern. If the pattern is persistent, it will store XYZ and other salient
-     * information for future use.  Each pattern class is responsible for keeping track of the information it needs in
+     * Executes the main function of a given Rune.  If the Rune is persistent, it will store XYZ and other salient
+     * information for future use.  Each Rune class is responsible for keeping track of the information it needs in
      * a static class variable.
-     * @param coords World and xyz that pattern was activated in.
-     * @param player We pass the player instead of World so that Pattern can later affect the Player
+     * @param coords World and xyz that Rune was activated in.
+     * @param player We pass the player instead of World so that runes can later affect the Player
+     * @param forward 
      */
     public abstract void execute(WorldXYZ coords, EntityPlayer player);
     

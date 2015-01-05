@@ -1,10 +1,9 @@
 package us.illyohs.azathoth.pulsar.internal;
 
-import net.minecraftforge.fml.common.ICrashCallable;
-
 import us.illyohs.azathoth.pulsar.control.PulseManager;
 import us.illyohs.azathoth.pulsar.pulse.PulseMeta;
 
+import cpw.mods.fml.common.ICrashCallable;
 
 /**
  * FML crash callable for Pulse Managers; dumps a list of loaded pulses to the error log.

@@ -26,7 +26,6 @@
 package us.illyohs.azathoth.world;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 
 /**
  * Plain old Data.  getClass() and meta.  Use this to preserve all your block info.
@@ -34,23 +33,23 @@ import net.minecraft.block.state.IBlockState;
  * Doesn't currently do TileEntity or NBT.
  */
 public class SigBlock{
-    public IBlockState state;
+    public int meta;
     public Block blockID;
-    public SigBlock(Block blockID, IBlockState state){
+    public SigBlock(Block blockID, int meta){
         this.blockID = blockID;
-        this.state = state;
+        this.meta = meta;
     }
     
     @Override
     public boolean equals(Object other){
         if(other instanceof SigBlock)
-            return blockID == ((SigBlock)other).blockID && state == ((SigBlock)other).state;
+            return blockID == ((SigBlock)other).blockID && meta == ((SigBlock)other).meta;
         else if (other instanceof Block)
             return blockID.equals((Block)other);  //can't get meta from block without coordinates
         return false;
     }
     
     public String toString(){
-        return "" + blockID + ":" + state.toString();
+        return "" + blockID + ":" + meta;
     }
 }

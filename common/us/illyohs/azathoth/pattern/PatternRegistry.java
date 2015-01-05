@@ -26,7 +26,6 @@
 package us.illyohs.azathoth.pattern;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -34,13 +33,15 @@ import java.util.Iterator;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import scala.actors.threadpool.Arrays;
+import scala.collection.mutable.ArrayBuilder.ofBoolean;
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.WorldXYZ;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PatternRegistry {
     
@@ -57,7 +58,7 @@ public class PatternRegistry {
     }
     
     public void registerPattern(String modid, String name, Pattern pattern) {
-        //TODO: store modids
+        //TODO: organize the pattern registry by mods 
     }
     
     @SubscribeEvent
@@ -67,7 +68,7 @@ public class PatternRegistry {
                 Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
             
           possiblePatternActivation(event.entityPlayer, 
-                  new WorldXYZ(event.entityPlayer.worldObj, event.pos, event.face));
+                  new WorldXYZ(event.entityPlayer.worldObj, event.x, event.y, event.z, event.face));
 //          System.out.println("Ouch you poked me!!");
         }
     }
@@ -79,7 +80,7 @@ public class PatternRegistry {
             Pattern matchPattern = matchingPatternInfo.getLeft();
             String direction;
             if (matchPattern.isAsymmetrical()) {
-                System.out.println("OUCH YOU POKED ME!");
+//                System.out.println("OUCH YOU POKED ME!");
                 direction = Vector3.faceString[Arrays.asList(Vector3.facing).indexOf(matchingPatternInfo.getRight())];
             } else {
                 System.out.println("BOOOOOOOP");

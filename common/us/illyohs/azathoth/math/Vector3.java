@@ -26,7 +26,8 @@
 package us.illyohs.azathoth.math;
 
 import us.illyohs.azathoth.world.WorldXYZ;
-import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.util.ForgeDirection;
+
 
 public class Vector3 {
     
@@ -68,10 +69,10 @@ public class Vector3 {
         z = destination.posZ - reference.posZ;
     }
     
-    public Vector3(EnumFacing face) {
-        x = face.getFrontOffsetX();
-        y = face.getFrontOffsetY();
-        z = face.getFrontOffsetZ();
+    public Vector3(ForgeDirection face) {
+        x = face.offsetX;
+        y = face.offsetY;
+        z = face.offsetZ;
     }
 
     public String toString() {
