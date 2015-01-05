@@ -26,22 +26,19 @@
 package us.illyohs.azathoth.pattern;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.Arrays;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import scala.actors.threadpool.Arrays;
-import scala.collection.mutable.ArrayBuilder.ofBoolean;
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.WorldXYZ;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PatternRegistry {
     

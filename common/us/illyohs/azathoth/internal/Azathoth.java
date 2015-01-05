@@ -26,12 +26,10 @@
 package us.illyohs.azathoth.internal;
 
 
-import java.util.Iterator;
-
+import net.minecraftforge.common.MinecraftForge;
 import us.illyohs.azathoth.pattern.PatternRegistry;
 import us.illyohs.tests.BarPattern;
 import us.illyohs.tests.FooPattern;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
