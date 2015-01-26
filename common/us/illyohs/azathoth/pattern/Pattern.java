@@ -49,6 +49,18 @@ public abstract class Pattern {
     
     /**
      * The pattern template
+     * 
+     * Example:
+     * @Override
+     *  public Block[][][] patternTemplate() {
+     *      Block STONE = Blocks.stone;
+     *      Block CSTONE = Blocks.cobblestone;
+     *      return new Block[][][]{{
+     *          {STONE, STONE, STONE},
+     *          {STONE, CSTONE, STONE},
+     *          {STONE, STONE, STONE}
+     *      }};
+     *  }
      */
     protected abstract Block[][][] patternTemplate();
     
@@ -65,6 +77,12 @@ public abstract class Pattern {
      * @param coords World and xyz that Rune was activated in.
      * @param player We pass the player instead of World so that runes can later affect the Player
      * @param forward 
+     * 
+     * Example:
+     * @Override
+     * public void execute(WorldXYZ coords, EntityPlayer player) {
+     *      player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
+     *  }
      */
     public abstract void execute(WorldXYZ coords, EntityPlayer player);
     
