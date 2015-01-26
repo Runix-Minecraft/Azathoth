@@ -1,8 +1,18 @@
-commit 66733fa
+commit 0ad5ade
+Author:     Anthony Anderson <LordIllyohs@gmail.com>
+AuthorDate: Sun Jan 25 23:57:34 2015 -0500
+Commit:     Anthony Anderson <LordIllyohs@gmail.com>
+CommitDate: Sun Jan 25 23:57:34 2015 -0500
+
+    changed file perms
+    
+    Signed-off-by: Anthony Anderson <LordIllyohs@gmail.com>
+
+commit 0dffc40
 Author:     Anthony Anderson <LordIllyohs@gmail.com>
 AuthorDate: Sun Jan 25 23:01:43 2015 -0500
 Commit:     Anthony Anderson <LordIllyohs@gmail.com>
-CommitDate: Sun Jan 25 23:06:30 2015 -0500
+CommitDate: Sun Jan 25 23:06:50 2015 -0500
 
     Added sponge idea to the TODO by no means it this set in stone
     
