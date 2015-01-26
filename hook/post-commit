@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#changelog file
+FILE=changelog.txt
+
+# create changelog
+git --no-pager log --pretty=fuller --abbrev-commit > $FILE
+
+#try to ammned commit without looping
+RES=$(git status --porcelain | grep $FILE | wc -l)
+if [ "$RES" -gt 0 ]; then
+  git add $FILE
+  git commit --amend --no-edit
+  echo "ammneding changelog"
+fi
