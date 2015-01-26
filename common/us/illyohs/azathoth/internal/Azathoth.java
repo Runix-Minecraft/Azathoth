@@ -28,11 +28,8 @@ package us.illyohs.azathoth.internal;
 
 import net.minecraftforge.common.MinecraftForge;
 import us.illyohs.azathoth.pattern.PatternRegistry;
-import us.illyohs.tests.BarPattern;
-import us.illyohs.tests.FooPattern;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -40,15 +37,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Azathoth {
     
-    @Instance
-    public static Azathoth instance;
-    
 //    public PatternRegistry patReg;
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        PatternRegistry.registerPattern(new FooPattern());
-        PatternRegistry.registerPattern(new BarPattern());
         
     }
     

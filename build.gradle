@@ -16,6 +16,7 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven'
 
 ext.configFile = file "build.properties"
 
@@ -29,6 +30,12 @@ task buildInfo {
     def cmd = "git rev-parse --short HEAD"
     def proc = cmd.execute()
     ext.sha = proc.text.trim()
+}
+
+task gitBranch {
+    def cmd = "git rev-parse --abbrev-ref HEAD"
+    def proc = cmd.execute()
+    ext.branch = proc.text.trim()
 }
 
 def ENV = System.getenv()

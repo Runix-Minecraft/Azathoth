@@ -125,26 +125,28 @@ public abstract class Pattern {
         } else {
             for(int nTurns = 0; nTurns < 4; ++nTurns) {
                 HashMap<WorldXYZ, SigBlock> newShape = UtilMove.rotateStructureInMemory(shape, coords, nTurns);
-                
-                switch(coords.face){
-                case 0: case 1: 
-                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xzRotationOrder[nTurns]);
-                    break;
-                case 2: case 3: 
-                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xyRotationOrder[nTurns]);
-                    break;
-                case 4: case 5: 
-                    coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.yzRotationOrder[nTurns]);
-                    break;
+                if(patternOrientationMatches(coords, newShape)) {
+                    switch(coords.face){
+                        case 0: case 1: 
+                            coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xzRotationOrder[nTurns]);
+                            break;
+                        case 2: case 3: 
+                            coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.xyRotationOrder[nTurns]);
+                            break;
+                        case 4: case 5: 
+                            coords.face = (new ArrayList<Vector3>(Arrays.asList(Vector3.facing))).indexOf(Vector3.yzRotationOrder[nTurns]);
+                            break;
+                        }
+                    return coords;
+                    }
+
                 }
-                return coords;
             }
-        }
-        return null;
+            return null;
         
-    }
+        }
     
-    private boolean patternOrientationMatches(WorldXYZ coords, HashMap<WorldXYZ, SigBlock> shape) {
+    public boolean patternOrientationMatches(WorldXYZ coords, HashMap<WorldXYZ, SigBlock> shape) {
         //TODO: 
         return false;
     }
