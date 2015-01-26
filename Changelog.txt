@@ -1,3 +1,23 @@
+commit 2a45030
+Author:     Anthony Anderson <LordIllyohs@gmail.com>
+AuthorDate: Mon Jan 26 00:05:02 2015 -0500
+Commit:     Anthony Anderson <LordIllyohs@gmail.com>
+CommitDate: Mon Jan 26 00:05:41 2015 -0500
+
+    removed unneded line
+    
+    Signed-off-by: Anthony Anderson <LordIllyohs@gmail.com>
+
+commit 2cd94ab
+Author:     Anthony Anderson <LordIllyohs@gmail.com>
+AuthorDate: Mon Jan 26 00:00:10 2015 -0500
+Commit:     Anthony Anderson <LordIllyohs@gmail.com>
+CommitDate: Mon Jan 26 00:00:10 2015 -0500
+
+    hoo still not working
+    
+    Signed-off-by: Anthony Anderson <LordIllyohs@gmail.com>
+
 commit 6480502
 Author:     Anthony Anderson <LordIllyohs@gmail.com>
 AuthorDate: Sun Jan 25 23:57:34 2015 -0500

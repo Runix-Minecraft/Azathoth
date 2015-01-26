@@ -37,8 +37,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Azathoth {
     
-//    public PatternRegistry patReg;
-    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         
