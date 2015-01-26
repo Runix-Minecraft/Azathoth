@@ -48,7 +48,7 @@ public abstract class Pattern {
     public Pattern() {}
     
     /**
-     * The pattern 
+     * The pattern template
      */
     protected abstract Block[][][] patternTemplate();
     
