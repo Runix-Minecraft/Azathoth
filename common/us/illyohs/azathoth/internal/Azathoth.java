@@ -38,9 +38,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class Azathoth {
     
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        
-    }
+    public void preInit(FMLPreInitializationEvent event) {}
     
     @EventHandler
     public void Init(FMLInitializationEvent event) {
