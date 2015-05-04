@@ -18,7 +18,6 @@ notifications:
   irc:
     channels:
       - "irc.esper.net#runix"
-      - "irc.esper.net#illyohs"
     template:
       - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
       - "Change view: %{compare_url}"
