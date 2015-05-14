@@ -33,8 +33,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import us.illyohs.azathoth.pattern.PatternRegistry;
-
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Azathoth {
     
@@ -43,15 +41,15 @@ public class Azathoth {
     
     @EventHandler
     public void Init(FMLInitializationEvent event) {
-        for (int i = 0; i <PatternRegistry.patRegistry.size(); i++) {
-            System.out.println(i);
-        }
+//        for (int i = 0; i <PatternRegistry.patRegistry.size(); i++) {
+//            System.out.println(i);
+//        }
+        //Register pattern
         
     }
     
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new PatternRegistry());
     }
 
 }

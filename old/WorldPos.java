@@ -25,13 +25,14 @@
  */
 package us.illyohs.azathoth.world;
 
-import us.illyohs.azathoth.math.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import us.illyohs.azathoth.math.Vector3;
 
 public class WorldPos extends BlockPos {
 
@@ -42,6 +43,8 @@ public class WorldPos extends BlockPos {
     public int              posX;
     public int              posY;
     public int              posZ;
+    
+    public BlockPos         pos;
 
     /**
      * @param x
@@ -139,22 +142,55 @@ public class WorldPos extends BlockPos {
             return false;
         }
     }
-    
-//    public SigBlock getSigBlock() {
-//        return new SigBlock(getBlock());
-//    }
-    //FIXME: Work on sigblock tommarow
+
+    public SigBlock getSigBlock() {
+        return new SigBlock(getBlock(), getState());
+    }
 
     //Simple wrapper method for getBlockID()
-    public IBlockState getBlock() {
-//        return this.getWorld().getBlock(this.posX, this.posY, this.posZ);
-        return getWorld().getBlockState(ORIGIN);
+    public Block getBlock() {
+        return getWorld().getBlockState(pos).getBlock();
     }
-    
-    //NO more meta get from state see getblock
-//    public int getMetaId() {
-//        return getWorld().getBlockMetadata(posX, posY, posZ);
-//    }
+
+    //Sister function to getBlockID() for meta values.
+    public IBlockState getState() {
+        return getWorld().getBlockState(pos);
+    }
+
+    /**
+     * Simple wrapper method for setBlockID()
+     * @param blockID
+     * @return true if successful
+     */
+    public boolean setBlockIdAndUpdate(Block blockID){
+        if(blockID == Blocks.bedrock || getBlock() == Blocks.bedrock) {            
+            return false; //You cannot delete or place bedrock
+        }
+//        return this.getWorld().setBlock(posX, posY, posZ, blockID);
+        return getWorld().setBlockState(pos, (IBlockState) getState().getBlock());
+    }
+
+    public boolean setBlockId(SigBlock sig){
+        if(sig.equals(Blocks.bedrock) || getBlock() == Blocks.bedrock) {
+            return false; //You cannot delete or place bedrock
+        }
+//        return this.getWorld().setBlock(posX, posY, posZ, sig.blockID, sig.meta, 2);
+        return getWorld().setBlockState(pos, sig.state);
+        //NOTE: Use last arg 3 if you want a block update.
+    }
+
+    public boolean setBlock(Block blockID, IBlockState state){
+        if(blockID == Blocks.bedrock || getBlock() == Blocks.bedrock) {
+            return false; //You cannot delete or place bedrock            
+        }
+//        return this.getWorld().setBlock(posX, posY, posZ, blockID, meta, 3);
+        return getWorld().setBlockState(pos, (IBlockState) state.getBlock());
+    }
+
+    public String toString(){//this is designed to match the GSON output
+        return "{\"dimensionID\":"+dimID+",\"face\":"+face+",\"posX\":"+posX+",\"posY\":"+posY+",\"posZ\":"+posZ+"}";
+//        return "(" + posX + "," + posY +  "," + posZ + ")";
+    }
 
     public int getDimensionID() {
         if (getWorld() == null) {
@@ -189,9 +225,5 @@ public class WorldPos extends BlockPos {
         }
         return world;
     }
-
-    /**
-     * @return
-     */
-
+    
 }
