@@ -55,17 +55,6 @@ minecraft {
     replace '@VERSION@', "${config.mc_version}-${config.mod_version}"
 }
 
-sourceSets {
-	main {
-		java {
-			srcDir 'common'
-		}
-		resources {
-			srcDir 'resources'
-		}
-	}
-}
-
 processResources {
 
     inputs.property "version", project.version

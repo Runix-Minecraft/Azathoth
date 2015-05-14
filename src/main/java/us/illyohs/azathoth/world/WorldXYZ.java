@@ -33,6 +33,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
@@ -43,7 +44,7 @@ import net.minecraft.world.World;
  * World and contains helper methods useful to Runix.
  */
 
-public class WorldXYZ extends ChunkCoordinates {
+public class WorldXYZ extends BlockPos {
 
     private transient World worldObj = null;
     private int dimensionID = -500000;
@@ -60,14 +61,14 @@ public class WorldXYZ extends ChunkCoordinates {
         super(x, y, z);
         this.setWorld(defaultWorld());
     }
-
-    public WorldXYZ(World world, int x, int y, int z) { //this constructor was made to be fast
-        posX = x;
-        posY = y;
-        posZ = z;
-        worldObj = world;
-        dimensionID = world.provider.dimensionId;
-    }
+//
+//    public WorldXYZ(World world, int x, int y, int z) { //this constructor was made to be fast
+//        posX = x;
+//        posY = y;
+//        posZ = z;
+//        worldObj = world;
+//        dimensionID = world.provider.dimensionId;
+//    }
 
     public WorldXYZ(World world, int x, int y, int z, int face) {
         super(x,y,z);
@@ -80,15 +81,15 @@ public class WorldXYZ extends ChunkCoordinates {
         setWorld(player.worldObj);
     }
 
-    public WorldXYZ(ChunkCoordinates otherGuy) {
-        super(otherGuy);
-        if(otherGuy instanceof WorldXYZ){
-            this.setWorld(((WorldXYZ) otherGuy).getWorld());
-            face = ((WorldXYZ) otherGuy).face;
-        }
-        else
-            this.setWorld(defaultWorld());
-    }
+//    public WorldXYZ(ChunkCoordinates otherGuy) {
+//        super(otherGuy);
+//        if(otherGuy instanceof WorldXYZ){
+//            this.setWorld(((WorldXYZ) otherGuy).getWorld());
+//            face = ((WorldXYZ) otherGuy).face;
+//        }
+//        else
+//            this.setWorld(defaultWorld());
+//    }
 
     public World getWorld() {
         if(worldObj == null && dimensionID != -500000) {
@@ -116,40 +117,40 @@ public class WorldXYZ extends ChunkCoordinates {
     /**
      * Creates a new WorldXYZ based off of a previous one and a relative vector
      */
-    public WorldXYZ offset(int dX, int dY, int dZ){
-        return new WorldXYZ(this.getWorld(), this.posX + dX, this.posY + dY, this.posZ + dZ, face);
-    }
-
-    public WorldXYZ offset(int dX, int dY, int dZ, int facing) {
-        return new WorldXYZ(this.getWorld(), this.posX + dX, this.posY + dY, this.posZ + dZ, facing);
-    }
-
-    public WorldXYZ offset(Vector3 delta){
-        return new WorldXYZ(this.getWorld(), posX + delta.x, posY + delta.y, posZ + delta.z, face);
-    }
-    
-    public WorldXYZ offsetWorld(Vector3 delta, World dem) {
-    	return new WorldXYZ(dem, posX + delta.x, posY + delta.y, posZ + delta.z, face);
-    }
+//    public WorldXYZ offset(int dX, int dY, int dZ){
+//        return new WorldXYZ(this.getWorld(), this.posX + dX, this.posY + dY, this.posZ + dZ, face);
+//    }
+//
+//    public WorldXYZ offset(int dX, int dY, int dZ, int facing) {
+//        return new WorldXYZ(this.getWorld(), this.posX + dX, this.posY + dY, this.posZ + dZ, facing);
+//    }
+//
+//    public WorldXYZ offset(Vector3 delta){
+//        return new WorldXYZ(this.getWorld(), posX + delta.x, posY + delta.y, posZ + delta.z, face);
+//    }
+//    
+//    public WorldXYZ offsetWorld(Vector3 delta, World dem) {
+//    	return new WorldXYZ(dem, posX + delta.x, posY + delta.y, posZ + delta.z, face);
+//    }
 
     /**
      * Like offset() but for facing instead.  Returning a new instance avoids side-effecting
      */
-    public WorldXYZ copyWithNewFacing(int face2) {
-        WorldXYZ n = new WorldXYZ(this);
-        n.face = face2;
-        return n;
-    }
+//    public WorldXYZ copyWithNewFacing(int face2) {
+//        WorldXYZ n = new WorldXYZ(this);
+//        n.face = face2;
+//        return n;
+//    }
 
     /**
      * Similar to offset(), but updates the current instance instead of a new one.
      */
-    public WorldXYZ bump(int dX, int dY, int dZ) {
-        posX += dX;
-        posY += dY;
-        posZ += dZ;
-        return this;
-    }
+//    public WorldXYZ bump(int dX, int dY, int dZ) {
+//        posX += dX;
+//        posY += dY;
+//        posZ += dZ;
+//        return this;
+//    }
 
     public WorldXYZ rotate(WorldXYZ referencePoint, boolean counterClockwise){
         Vector3 d = new Vector3(referencePoint, this);// determine quadrant relative to reference

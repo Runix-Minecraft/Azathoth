@@ -25,9 +25,9 @@
  */
 package us.illyohs.azathoth.fx;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class FxHelper {
 
