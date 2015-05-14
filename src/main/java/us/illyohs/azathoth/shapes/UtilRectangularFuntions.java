@@ -27,11 +27,11 @@ package us.illyohs.azathoth.shapes;
 
 import java.util.HashSet;
 
-import us.illyohs.azathoth.world.WorldXYZ;
+import us.illyohs.azathoth.world.WorldPos;
 
 public class UtilRectangularFuntions {
     
-    public static HashSet<WorldXYZ> getRectangularPrism(WorldXYZ coords, int length, int width, int hight) {
+    public static HashSet<WorldPos> getRectangularPrism(WorldPos coords, int length, int width, int hight) {
         //TODO: Work out the logic for rectangular prisms
             //For this sudo code length = L, width = W, hight = H
                 //So LxWxH

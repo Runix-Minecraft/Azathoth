@@ -89,7 +89,7 @@ public class UtilMove {
     public static HashMap<WorldPos, SigBlock> scanBlocksInShape(Set<WorldPos> shape) {
         HashMap<WorldPos, SigBlock> actualBlocks = new HashMap<WorldPos, SigBlock>();
         for(WorldPos point : shape) {
-            actualBlocks.put(point, point.getSigBlock());
+            actualBlocks.put(point, point.getBlock());
         }
         return actualBlocks;
     }

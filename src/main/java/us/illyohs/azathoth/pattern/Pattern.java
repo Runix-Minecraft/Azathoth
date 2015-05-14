@@ -34,7 +34,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.util.UtilMove;
 import us.illyohs.azathoth.world.SigBlock;
-import us.illyohs.azathoth.world.WorldXYZ;
+import us.illyohs.azathoth.world.WorldPos;
 
 /**
  * This is the basis of all patterns. In order to register all patterns
@@ -66,7 +66,7 @@ public abstract class Pattern {
     
     public abstract boolean isFlatPatternOnly();
     
-    public void execute(WorldXYZ coords, EntityPlayer player, Vector3 forward) {
+    public void execute(WorldPos coords, EntityPlayer player, Vector3 forward) {
         execute(coords, player);
     }
     
@@ -80,32 +80,32 @@ public abstract class Pattern {
      * 
      * Example:
      * @Override
-     * public void execute(WorldXYZ coords, EntityPlayer player) {
+     * public void execute(WorldPos coords, EntityPlayer player) {
      *      player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "MUCH PATTERN! MUCH WOW! ILLY IS SEXY!"));
      *  }
      */
-    public abstract void execute(WorldXYZ coords, EntityPlayer player);
+    public abstract void execute(WorldPos coords, EntityPlayer player);
     
-    protected boolean stampBlockPattern(HashMap<WorldXYZ, SigBlock> stamp, EntityPlayer player) {
-        for (WorldXYZ target : stamp.keySet()) 
+    protected boolean stampBlockPattern(HashMap<WorldPos, SigBlock> stamp, EntityPlayer player) {
+        for (WorldPos target : stamp.keySet()) 
             target.setBlockId(stamp.get(target));
             return true;
             //TODO: build permissions system/checking
     }
     
-    protected HashMap<WorldXYZ, SigBlock> patternFormulae(WorldXYZ coords) {
+    protected HashMap<WorldPos, SigBlock> patternFormulae(WorldPos coords) {
         if (isFlatPatternOnly())
             coords = coords.copyWithNewFacing(1);
             return patternToShape(patternTemplate(), coords);
 
     }
 
-    private HashMap<WorldXYZ, SigBlock> patternToShape(Block[][][] pattern, WorldXYZ centerPoint) {
-        HashMap<WorldXYZ, SigBlock> shape = new HashMap<WorldXYZ, SigBlock>();
+    private HashMap<WorldPos, SigBlock> patternToShape(Block[][][] pattern, WorldPos centerPoint) {
+        HashMap<WorldPos, SigBlock> shape = new HashMap<WorldPos, SigBlock>();
         for (int y = 0; y < pattern.length; y++) {
             for (int z = 0; z < pattern[y].length; z++) {
                 for (int x = 0; x < pattern[y][z].length; x++) {
-                    WorldXYZ target;
+                    WorldPos target;
                     
                     switch(centerPoint.face) {
                         case 1: //laying flat activated from top or bottom
@@ -131,8 +131,8 @@ public abstract class Pattern {
         return shape;
     }
     
-    public WorldXYZ checkPattern(WorldXYZ coords) {
-        HashMap<WorldXYZ, SigBlock> shape = patternFormulae(coords);
+    public WorldPos checkPattern(WorldPos coords) {
+        HashMap<WorldPos, SigBlock> shape = patternFormulae(coords);
         if (!isAsymmetrical()) {
             if (patternOrientationMatches(coords, shape)) {
                 return coords;
@@ -142,7 +142,7 @@ public abstract class Pattern {
             
         } else {
             for(int nTurns = 0; nTurns < 4; ++nTurns) {
-                HashMap<WorldXYZ, SigBlock> newShape = UtilMove.rotateStructureInMemory(shape, coords, nTurns);
+                HashMap<WorldPos, SigBlock> newShape = UtilMove.rotateStructureInMemory(shape, coords, nTurns);
                 if(patternOrientationMatches(coords, newShape)) {
                     switch(coords.face){
                         case 0: case 1: 
@@ -164,7 +164,7 @@ public abstract class Pattern {
         
         }
     
-    public boolean patternOrientationMatches(WorldXYZ coords, HashMap<WorldXYZ, SigBlock> shape) {
+    public boolean patternOrientationMatches(WorldPos coords, HashMap<WorldPos, SigBlock> shape) {
         //TODO: 
         return false;
     }

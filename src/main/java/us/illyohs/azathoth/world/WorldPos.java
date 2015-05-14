@@ -78,7 +78,7 @@ public class WorldPos extends BlockPos {
         }
     }
 
-    // Is this needed with BlockPos now with block pos
+    // Is this needed with BlockPos now with blockpos
     public WorldPos offset(int dX, int dY, int dZ) {
         return new WorldPos(this.getWorld(), this.getX() + dX, this.getY() + dY, this.getZ() + dZ, face);
     }

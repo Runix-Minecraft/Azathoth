@@ -31,14 +31,14 @@ import java.util.Arrays;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import us.illyohs.azathoth.math.Vector3;
-import us.illyohs.azathoth.world.WorldXYZ;
+import us.illyohs.azathoth.world.WorldPos;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PatternRegistry {
     
@@ -65,12 +65,12 @@ public class PatternRegistry {
                 Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
             
           possiblePatternActivation(event.entityPlayer, 
-                  new WorldXYZ(event.entityPlayer.worldObj, event.x, event.y, event.z, event.face));
+                  new WorldPos(event.entityPlayer.worldObj, event.x, event.y, event.z, event.face));
 //          System.out.println("Ouch you poked me!!");
         }
     }
     
-    public void possiblePatternActivation(EntityPlayer player, WorldXYZ coords) {
+    public void possiblePatternActivation(EntityPlayer player, WorldPos coords) {
 
         Pair<Pattern, Vector3> matchingPatternInfo = checkForAnyPattern(coords);
         if (matchingPatternInfo != null) {
@@ -87,9 +87,9 @@ public class PatternRegistry {
         }
     }
 
-    private Pair<Pattern, Vector3> checkForAnyPattern(WorldXYZ coords) {
+    private Pair<Pattern, Vector3> checkForAnyPattern(WorldPos coords) {
         for (int i = 0; i< patRegistry.size(); i++ ) {
-            WorldXYZ result = patRegistry.get(i).checkPattern(new WorldXYZ(coords));
+            WorldPos result = patRegistry.get(i).checkPattern(new WorldPos(coords));
             if (result != null) {
                 Vector3 forward = Vector3.facing[result.face];
                 return new MutablePair<Pattern, Vector3>(patRegistry.get(i), forward);

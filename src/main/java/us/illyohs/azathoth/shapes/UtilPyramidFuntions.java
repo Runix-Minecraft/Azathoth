@@ -27,11 +27,11 @@ package us.illyohs.azathoth.shapes;
 
 import java.util.HashSet;
 
-import us.illyohs.azathoth.world.WorldXYZ;
+import us.illyohs.azathoth.world.WorldPos;
 
 public class UtilPyramidFuntions {
     
-    public static HashSet<WorldXYZ> getPyramid(WorldXYZ coords, int length, int width, int hight) {
+    public static HashSet<WorldPos> getPyramid(WorldPos coords, int length, int width, int hight) {
         //TODO: Work out the logic for Pyramids 
             //For this sudo code length = L, width = W, hight = H
                 //So LxW for the base then layers L-1xW-1 for each layer and center it till it reaches the top

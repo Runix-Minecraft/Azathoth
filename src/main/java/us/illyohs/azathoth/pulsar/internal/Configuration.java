@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraftforge.fml.common.Loader;
 import us.illyohs.azathoth.pulsar.config.IConfiguration;
 import us.illyohs.azathoth.pulsar.internal.logging.ILogger;
 import us.illyohs.azathoth.pulsar.pulse.PulseMeta;
@@ -18,8 +19,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-
-import cpw.mods.fml.common.Loader;
 
 /**
  * Default Gson Configuration helper.
@@ -58,7 +57,7 @@ public class Configuration implements IConfiguration {
     public boolean isModuleEnabled(PulseMeta meta) {
         ConfigEntry entry = modules.get(meta.getId());
         if (entry == null) {
-            modules.put(meta.getId(), new ConfigEntry(meta.isEnabled(), meta.getDescription()));
+            modules.put(meta.getId(), new ConfigEntry(meta.isDefaultEnabled(), meta.getDescription()));
             return meta.isEnabled();
         } else {
             return entry.getEnabled();
