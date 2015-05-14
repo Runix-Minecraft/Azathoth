@@ -25,9 +25,8 @@
  */
 package us.illyohs.azathoth.math;
 
-import us.illyohs.azathoth.world.WorldXYZ;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.util.ForgeDirection;
+import us.illyohs.azathoth.world.WorldPos;
 
 
 public class Vector3 {
@@ -64,10 +63,10 @@ public class Vector3 {
     /**
      * Returns a difference vector such that reference + vector = destination
      */
-    public Vector3(WorldXYZ reference, WorldXYZ destination){
-        x = destination.posX - reference.posX; 
-        y = destination.posY - reference.posY;
-        z = destination.posZ - reference.posZ;
+    public Vector3(WorldPos referencePoint, WorldPos worldPos){
+        x = worldPos.getX() - referencePoint.posX; 
+        y = worldPos.getY() - referencePoint.posY;
+        z = worldPos.getZ() - referencePoint.posZ;
     }
     
     public Vector3(EnumFacing face) {

@@ -30,22 +30,23 @@ import java.util.HashMap;
 import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
+
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.SigBlock;
-import us.illyohs.azathoth.world.WorldXYZ;
+import us.illyohs.azathoth.world.WorldPos;
 
 public class UtilMove {
     
-    public static HashMap<WorldXYZ, WorldXYZ> xzRotation(Collection<WorldXYZ> startingShape, WorldXYZ centerPoint, boolean counterClockwise){
+    public static HashMap<WorldPos, WorldPos> xzRotation(Collection<WorldPos> startingShape, WorldPos centerPoint, boolean counterClockwise){
         //centerPoint is also the axis of rotation
-        HashMap<WorldXYZ, WorldXYZ> rotationMapping = new HashMap<WorldXYZ, WorldXYZ>();
-        for( WorldXYZ point : startingShape ){
+        HashMap<WorldPos, WorldPos> rotationMapping = new HashMap<WorldPos, WorldPos>();
+        for( WorldPos point : startingShape ){
             rotationMapping.put(point, point.rotate(centerPoint, counterClockwise));//flip sign on X
         }
         return rotationMapping;
     }
     
-    public static boolean lookingRightOfCenterBlock(EntityPlayer player, WorldXYZ referencePoint) {
+    public static boolean lookingRightOfCenterBlock(EntityPlayer player, WorldPos referencePoint) {
         float yaw = player.rotationYawHead;//assumption: you're looking at the block you right clicked
         yaw = (yaw > 0.0) ? yaw  : yaw + 360.0F; //Josiah: minecraft yaw wanders into negatives sometimes...
         double opposite = player.posZ - referencePoint.posZ - .5;
@@ -61,23 +62,23 @@ public class UtilMove {
             return false;
     }
     
-    public static HashMap<WorldXYZ, WorldXYZ> displaceShape(Collection<WorldXYZ> set, WorldXYZ startPoint, WorldXYZ destinationCenter) {
-        HashMap<WorldXYZ, WorldXYZ> moveMapping = new HashMap<WorldXYZ, WorldXYZ>();
+    public static HashMap<WorldPos, WorldPos> displaceShape(Collection<WorldPos> set, WorldPos startPoint, WorldPos destinationCenter) {
+        HashMap<WorldPos, WorldPos> moveMapping = new HashMap<WorldPos, WorldPos>();
         Vector3 displacement = new Vector3(startPoint, destinationCenter);
-        for(WorldXYZ point : set)
+        for(WorldPos point : set)
             moveMapping.put(point, point.offsetWorld(displacement, destinationCenter.getWorld()));
         return moveMapping;
     }
     
-    public static HashMap<WorldXYZ, SigBlock> rotateStructureInMemory(HashMap<WorldXYZ, SigBlock> shape, WorldXYZ center, int nTurns) {
-        HashMap<WorldXYZ, SigBlock> startShape = new HashMap<WorldXYZ, SigBlock>(shape);
+    public static HashMap<WorldPos, SigBlock> rotateStructureInMemory(HashMap<WorldPos, SigBlock> shape, WorldPos center, int nTurns) {
+        HashMap<WorldPos, SigBlock> startShape = new HashMap<WorldPos, SigBlock>(shape);
         
         for(int turnNumber = 0; turnNumber < nTurns; ++turnNumber) {
-            HashMap<WorldXYZ, WorldXYZ> move = UtilMove.xzRotation(startShape.keySet(), center, false);
+            HashMap<WorldPos, WorldPos> move = UtilMove.xzRotation(startShape.keySet(), center, false);
 
-            HashMap<WorldXYZ, SigBlock> newShape = new HashMap<WorldXYZ, SigBlock>();//blank variable for swapping purposes
-            for(WorldXYZ origin : move.keySet()) {
-                WorldXYZ destination = move.get(origin);
+            HashMap<WorldPos, SigBlock> newShape = new HashMap<WorldPos, SigBlock>();//blank variable for swapping purposes
+            for(WorldPos origin : move.keySet()) {
+                WorldPos destination = move.get(origin);
                 newShape.put(destination, startShape.get(origin));
             }
             startShape = newShape;
@@ -85,9 +86,9 @@ public class UtilMove {
         return startShape;
     }
     
-    public static HashMap<WorldXYZ, SigBlock> scanBlocksInShape(Set<WorldXYZ> shape) {
-        HashMap<WorldXYZ, SigBlock> actualBlocks = new HashMap<WorldXYZ, SigBlock>();
-        for(WorldXYZ point : shape) {
+    public static HashMap<WorldPos, SigBlock> scanBlocksInShape(Set<WorldPos> shape) {
+        HashMap<WorldPos, SigBlock> actualBlocks = new HashMap<WorldPos, SigBlock>();
+        for(WorldPos point : shape) {
             actualBlocks.put(point, point.getSigBlock());
         }
         return actualBlocks;
