@@ -25,9 +25,11 @@
  */
 package us.illyohs.azathoth.math;
 
+import us.illyohs.azathoth.util.ExtendedPos;
 import net.minecraft.util.EnumFacing;
 
-
+//This class might be out of date(see net.minecraft.util.Vec3i) deprecating to remember to look at again.
+@Deprecated
 public class Vector3 {
     
     public static final Vector3 UP =    new Vector3(0, 1,0);
@@ -49,9 +51,7 @@ public class Vector3 {
     public static Vector3[] xyRotationOrder = {Vector3.UP, Vector3.EAST, Vector3.DOWN, Vector3.WEST,};
     public static Vector3[] yzRotationOrder = {Vector3.NORTH, Vector3.UP, Vector3.SOUTH, Vector3.DOWN,};
     
-    public int x;
-    public int y;
-    public int z;
+    public int x, y, z;
     
     public Vector3(int mx, int my, int mz) {
         x = mx;
@@ -62,11 +62,11 @@ public class Vector3 {
     /**
      * Returns a difference vector such that reference + vector = destination
      */
-//    public Vector3(WorldPos referencePoint, WorldPos worldPos){
-//        x = worldPos.getX() - referencePoint.posX; 
-//        y = worldPos.getY() - referencePoint.posY;
-//        z = worldPos.getZ() - referencePoint.posZ;
-//    }
+    public Vector3(ExtendedPos referencePoint, ExtendedPos pos){
+        x = pos.getX() - referencePoint.posX; 
+        y = pos.getY() - referencePoint.posY;
+        z = pos.getZ() - referencePoint.posZ;
+    }
     
     public Vector3(EnumFacing face) {
         x = face.getFrontOffsetX();
