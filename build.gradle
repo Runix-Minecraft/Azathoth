@@ -48,22 +48,14 @@ if (ENV.BUILD_ID) {
 group= "${config.group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "${config.name}"
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 minecraft {
     version = "${config.mc_version}-${config.forge_version}"
 
     replaceIn "internal/Reference.java"
     replace '@VERSION@', "${config.mc_version}-${config.mod_version}"
-}
-
-sourceSets {
-	main {
-		java {
-			srcDir 'common'
-		}
-		resources {
-			srcDir 'resources'
-		}
-	}
 }
 
 processResources {

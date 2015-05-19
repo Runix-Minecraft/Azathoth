@@ -1,0 +1,6 @@
+Library authors:
+Anthony Anderson https://github.com/LordIllyohs
+Josiah Seaman https://github.com/josiahseaman
+
+Others:
+Arkan Emberwalker(pulsar)  https://github.com/Emberwalker
