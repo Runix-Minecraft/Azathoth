@@ -21,6 +21,7 @@ public class ExtendedPos extends BlockPos {
         setWorld(defaultWorld());
     }
     
+    
     public ExtendedPos( World world, int x, int y, int z, int face) {
         super(x, y, z);
         setWorld(world);
@@ -39,6 +40,7 @@ public class ExtendedPos extends BlockPos {
             this.setWorld(defaultWorld());
         }
     }
+
 
     public ExtendedPos copyWithNewFaceing(int face) {
         ExtendedPos ep  = new ExtendedPos(this);
